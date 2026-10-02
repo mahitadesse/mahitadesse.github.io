@@ -610,6 +610,33 @@
         height:240px;
       }
     }
+   .creator-credit {
+  margin: 30px auto 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+}
+
+.creator-credit img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.creator-credit p {
+  margin: 0;
+  text-align: left;
+  font-size: 1rem;
+}
+
+.creator-credit strong {
+  display: block;
+  color: var(--rose-deep);
+  font-family: Georgia, "Times New Roman", serif;
+  font-size: 1.2rem;
+} 
   </style>
 </head>
 
@@ -1197,7 +1224,14 @@
       <p class="tiny">
         Demo website — no real reservations are processed.
       </p>
+<div class="creator-credit">
+  <img src="my_picture.jpg" alt="Picture of Mahlet Tadesse">
 
+  <p>
+    Webpage created by
+    <strong>Mahlet Tadesse</strong>
+  </p>
+</div>
     </div>
 
   </footer>
