@@ -1,658 +1,1111 @@
 <!DOCTYPE html>
+
 <html lang="en">
+
 <head>
+
   <meta charset="UTF-8" />
+
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
   <meta name="description" content="Coastal Escape — a fictional tropical resort website." />
+
   <title>Coastal Escape Resort</title>
 
   <style>
+
     :root{
+
       --blush:#f6d9d9;
+
       --rose:#d98f91;
+
       --rose-deep:#a95f63;
+
       --sand:#dcc4a6;
+
       --beige:#f6efe6;
+
       --cream:#fffaf5;
+
       --tan:#b69370;
+
       --ink:#4a3b36;
+
       --white:#ffffff;
+
       --shadow:0 18px 45px rgba(94,70,58,.14);
+
       --radius:28px;
+
     }
 
     *{
+
       box-sizing:border-box;
+
     }
 
     html{
+
       scroll-behavior:smooth;
+
     }
 
     body{
+
       margin:0;
+
       font-family:Inter,ui-sans-serif,system-ui,-apple-system,
+
       BlinkMacSystemFont,"Segoe UI",sans-serif;
+
       background:var(--cream);
+
       color:var(--ink);
+
       line-height:1.6;
+
     }
 
     h1,h2,h3,.brand{
+
       font-family:Georgia,"Times New Roman",serif;
+
       letter-spacing:-.02em;
+
     }
 
     img{
+
       display:block;
+
       width:100%;
+
       object-fit:cover;
+
     }
 
     a{
+
       text-decoration:none;
+
       color:inherit;
+
     }
 
     .container{
+
       width:min(1160px,92%);
+
       margin:auto;
+
     }
 
     .eyebrow{
+
       text-transform:uppercase;
+
       letter-spacing:.2em;
+
       font-size:.76rem;
+
       font-weight:800;
+
       color:var(--rose-deep);
+
     }
 
     .section{
+
       padding:95px 0;
+
     }
 
     .section-title{
+
       font-size:clamp(2.3rem,5vw,4rem);
+
       margin:.25rem 0 1rem;
+
       line-height:1;
+
     }
 
     .section-copy{
+
       max-width:680px;
+
       color:#6d5a53;
+
       font-size:1.05rem;
+
     }
 
     nav{
+
       position:fixed;
+
       z-index:50;
+
       top:18px;
+
       left:50%;
+
       transform:translateX(-50%);
+
       width:min(1120px,92%);
+
       background:rgba(255,250,245,.76);
+
       backdrop-filter:blur(16px);
+
       border:1px solid rgba(255,255,255,.8);
+
       border-radius:999px;
+
       display:flex;
+
       align-items:center;
+
       justify-content:space-between;
+
       padding:12px 16px 12px 24px;
+
       box-shadow:0 10px 35px rgba(64,45,39,.12);
+
     }
 
     .brand{
+
       font-size:1.18rem;
+
       font-weight:700;
+
     }
 
     .navlinks{
+
       display:flex;
+
       gap:22px;
+
       align-items:center;
+
       font-size:.91rem;
+
       font-weight:700;
+
     }
 
     .navlinks a{
+
       opacity:.78;
+
     }
 
     .navlinks a:hover{
+
       opacity:1;
+
       color:var(--rose-deep);
+
     }
 
     .nav-cta{
+
       background:var(--rose-deep);
+
       color:white;
+
       padding:10px 17px;
+
       border-radius:999px;
+
     }
 
     .hero{
+
       min-height:100vh;
+
       display:grid;
+
       place-items:end start;
+
       position:relative;
+
       background:
+
         linear-gradient(
+
           90deg,
+
           rgba(40,26,23,.52),
+
           rgba(40,26,23,.08) 62%
+
         ),
+
         url('https://images.pexels.com/photos/20639392/pexels-photo-20639392.jpeg?auto=compress&cs=tinysrgb&w=2000')
+
         center/cover no-repeat;
+
       color:white;
+
       padding:130px 0 74px;
+
     }
 
     .hero:after{
+
       content:"";
+
       position:absolute;
+
       inset:auto 0 0;
+
       height:150px;
+
       background:linear-gradient(transparent,var(--cream));
+
     }
 
     .hero-content{
+
       position:relative;
+
       z-index:2;
+
       width:min(760px,92%);
+
       margin-left:max(4vw,calc((100vw - 1160px)/2));
+
       padding-right:24px;
+
     }
 
     .hero .eyebrow{
+
       color:#ffe4e4;
+
     }
 
     .hero h1{
+
       font-size:clamp(4rem,9vw,7.6rem);
+
       line-height:.87;
+
       margin:12px 0 22px;
-      font-weight:500;
+
+       font-weight:500;
+
     }
 
     .hero p{
+
       font-size:1.15rem;
+
       max-width:620px;
+
       text-shadow:0 2px 16px rgba(0,0,0,.22);
+
     }
 
     .hero-actions{
+
       display:flex;
+
       gap:12px;
+
       flex-wrap:wrap;
+
       margin-top:30px;
+
     }
 
     .btn{
+
       display:inline-flex;
+
       align-items:center;
+
       justify-content:center;
+
       padding:14px 22px;
+
       border-radius:999px;
+
       font-weight:800;
+
       transition:.25s ease;
+
       border:1px solid transparent;
+
       cursor:pointer;
+
       font:inherit;
+
     }
 
     .btn:hover{
+
       transform:translateY(-2px);
+
     }
 
     .btn-primary{
+
       background:var(--blush);
+
       color:#6f4749;
+
     }
 
     .btn-light{
+
       background:rgba(255,255,255,.14);
+
       border-color:rgba(255,255,255,.6);
+
       color:white;
+
       backdrop-filter:blur(10px);
+
     }
 
     .about-grid{
+
       display:grid;
+
       grid-template-columns:1.05fr .95fr;
+
       gap:60px;
+
       align-items:center;
+
     }
 
     .polaroid{
+
       background:white;
+
       padding:14px 14px 42px;
+
       border-radius:8px;
+
       box-shadow:var(--shadow);
+
       transform:rotate(-2deg);
+
     }
 
     .polaroid img{
+
       height:540px;
+
       border-radius:4px;
+
     }
 
     .mini-note{
+
       display:inline-block;
+
       margin-top:24px;
+
       background:var(--blush);
+
       padding:12px 18px;
+
       border-radius:18px;
+
       font-weight:700;
+
       transform:rotate(1deg);
+
     }
 
     .rooms{
+
       background:linear-gradient(180deg,var(--beige),#f9f3ec);
+
     }
 
     .cards{
+
       display:grid;
+
       grid-template-columns:repeat(3,1fr);
+
       gap:24px;
+
       margin-top:45px;
+
     }
 
     .card{
+
       background:white;
+
       border-radius:var(--radius);
+
       overflow:hidden;
+
       box-shadow:var(--shadow);
+
       transition:.25s ease;
+
     }
 
     .card:hover{
+
       transform:translateY(-7px);
+
     }
 
     .card img{
+
       height:280px;
+
     }
 
     .card-body{
+
       padding:24px;
+
     }
 
     .card h3{
+
       font-size:1.7rem;
+
       margin:0 0 6px;
+
     }
 
     .price{
+
       font-weight:900;
+
       color:var(--rose-deep);
+
       margin-top:14px;
+
     }
 
     .muted{
+
       color:#7b6861;
+
     }
 
     .activities-grid{
+
       display:grid;
+
       grid-template-columns:repeat(4,1fr);
+
       gap:16px;
+
       margin-top:42px;
+
     }
 
     .activity{
+
       min-height:220px;
+
       border-radius:24px;
+
       padding:22px;
+
       display:flex;
+
       flex-direction:column;
+
       justify-content:flex-end;
+
       background:#f4dfd8;
+
       position:relative;
+
       overflow:hidden;
+
     }
 
     .activity:nth-child(2n){
+
       background:#ead8c1;
+
     }
 
     .activity:nth-child(3n){
+
       background:#f6e9df;
+
     }
 
     .activity .icon{
+
       font-size:2rem;
+
       position:absolute;
+
       top:20px;
+
     }
 
     .activity h3{
+
       margin:0;
+
       font-size:1.3rem;
+
     }
 
     .activity p{
+
       margin:6px 0 0;
+
       color:#725e56;
+
       font-size:.94rem;
+
     }
 
     .food{
+
       background:#fff;
+
     }
 
     .food-grid{
+
       display:grid;
+
       grid-template-columns:1.1fr .9fr;
+
       gap:26px;
+
       margin-top:44px;
+
     }
 
     .food-feature,
+
     .food-stack article{
+
       position:relative;
-      overflow:hidden;
+
+            overflow:hidden;
+
       border-radius:30px;
+
       color:white;
+
       min-height:580px;
+
       box-shadow:var(--shadow);
+
     }
 
     .food-feature{
+
       background:
+
         linear-gradient(
+
           180deg,
+
           transparent 40%,
+
           rgba(41,25,20,.75)
+
         ),
+
         url('https://images.pexels.com/photos/3026808/pexels-photo-3026808.jpeg?auto=compress&cs=tinysrgb&w=1400')
+
         center/cover;
+
     }
 
     .food-stack{
+
       display:grid;
+
       gap:26px;
+
     }
 
     .food-stack article{
+
       min-height:277px;
+
     }
 
     .food-stack article:first-child{
+
       background:
+
         linear-gradient(
+
           180deg,
+
           transparent 32%,
+
           rgba(41,25,20,.76)
+
         ),
+
         url('https://images.pexels.com/photos/262978/pexels-photo-262978.jpeg?auto=compress&cs=tinysrgb&w=1200')
+
         center/cover;
+
     }
 
     .food-stack article:last-child{
+
       background:
+
         linear-gradient(
+
           180deg,
+
           transparent 32%,
+
           rgba(41,25,20,.76)
+
         ),
+
         url('https://images.pexels.com/photos/1267320/pexels-photo-1267320.jpeg?auto=compress&cs=tinysrgb&w=1200')
+
         center/cover;
+
     }
 
     .food-copy{
+
       position:absolute;
+
       left:28px;
+
       right:28px;
+
       bottom:24px;
+
     }
 
     .food-copy h3{
+
       font-size:2rem;
+
       margin:0;
+
     }
 
     .food-copy p{
+
       margin:5px 0 0;
+
       color:#fff3ef;
+
     }
 
     .gallery{
+
       background:var(--blush);
+
     }
 
     .gallery-grid{
+
       display:grid;
+
       grid-template-columns:1.2fr .8fr .8fr;
+
       grid-auto-rows:260px;
+
       gap:16px;
+
       margin-top:38px;
+
     }
 
     .gallery-grid img{
+
       height:100%;
+
       border-radius:24px;
+
       box-shadow:0 15px 30px rgba(96,62,58,.12);
+
     }
 
     .gallery-grid img:first-child{
+
       grid-row:span 2;
+
     }
 
     .gallery-grid img:nth-child(4){
+
       grid-column:span 2;
+
     }
 
     .book-wrap{
+
       background:linear-gradient(135deg,#fff7f1,#ead0c6);
+
       border-radius:38px;
+
       padding:46px;
+
       display:grid;
+
       grid-template-columns:.8fr 1.2fr;
+
       gap:50px;
+
       box-shadow:var(--shadow);
+
     }
 
     form{
+
       display:grid;
+
       grid-template-columns:1fr 1fr;
+
       gap:16px;
+
     }
 
     .field{
+
       display:flex;
+
       flex-direction:column;
+
       gap:7px;
+
     }
 
     .field.full{
+
       grid-column:1/-1;
+
     }
 
     label{
+
       font-size:.82rem;
+
       font-weight:800;
+
       text-transform:uppercase;
+
       letter-spacing:.08em;
+
       color:#7d5f5c;
+
     }
 
     input,
+
     select,
+
     textarea{
+
       width:100%;
+
       border:1px solid #e2c9be;
+
       background:rgba(255,255,255,.85);
+
       border-radius:15px;
+
       padding:14px 15px;
+
       font:inherit;
+
       color:var(--ink);
+
       outline:none;
+
     }
 
     input:focus,
+
     select:focus,
+
     textarea:focus{
+
       border-color:var(--rose-deep);
+
       box-shadow:0 0 0 4px rgba(169,95,99,.09);
+
     }
 
     textarea{
+
       min-height:105px;
+
       resize:vertical;
+
     }
 
     .submit{
+
       grid-column:1/-1;
+
       border:0;
+
       background:var(--rose-deep);
+
       color:white;
+
       padding:15px;
+
       border-radius:16px;
+
       font-weight:900;
+
       cursor:pointer;
+
     }
 
     .tiny{
+
       font-size:.83rem;
+
       color:#7a655e;
+
     }
 
     .fake-success{
+
       display:none;
+
       margin-top:14px;
+
       background:white;
+
       padding:14px 16px;
+
       border-radius:14px;
+
       font-weight:800;
+
       color:var(--rose-deep);
+
     }
 
     footer{
+
       padding:42px 0 55px;
+
       text-align:center;
+
       color:#79655d;
+
     }
 
     .footer-brand{
+
       font-family:Georgia,serif;
+
       font-size:2rem;
+
       color:var(--rose-deep);
+
     }
 
     @media(max-width:900px){
 
       .navlinks a:not(.nav-cta){
+
         display:none;
+
       }
 
       .about-grid,
+
       .food-grid,
+
       .book-wrap{
+
         grid-template-columns:1fr;
+
       }
 
       .cards{
+
         grid-template-columns:1fr 1fr;
+
       }
 
       .activities-grid{
+
         grid-template-columns:1fr 1fr;
+
       }
 
       .gallery-grid{
+
         grid-template-columns:1fr 1fr;
+
       }
 
       .gallery-grid img:first-child{
+
         grid-row:span 1;
+
       }
 
       .gallery-grid img:nth-child(4){
+
         grid-column:span 1;
+
       }
 
       .polaroid img{
+
         height:440px;
+
       }
+
     }
 
     @media(max-width:620px){
 
       .section{
+
         padding:72px 0;
+
       }
 
       .hero h1{
+
         font-size:4rem;
+
       }
 
       .cards,
+
       .activities-grid,
+
       .gallery-grid,
+
       form{
+
         grid-template-columns:1fr;
+
       }
 
       .food-feature{
+
         min-height:470px;
+
       }
 
       .book-wrap{
+
         padding:28px;
+
       }
 
       .field.full,
+
       .submit{
+
         grid-column:auto;
+
       }
 
       .card img{
+
         height:240px;
+
       }
+
     }
-   .creator-credit {
-  margin: 30px auto 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  gap: 15px;
-}
 
-.creator-credit img {
-  width: 70px;
-  height: 70px;
-  border-radius: 50%;
-  object-fit: cover;
-}
+    .creator-credit {
 
-.creator-credit p {
-  margin: 0;
-  text-align: left;
-  font-size: 1rem;
-}
+      margin:30px auto 0;
 
-.creator-credit strong {
-  display: block;
-  color: var(--rose-deep);
-  font-family: Georgia, "Times New Roman", serif;
-  font-size: 1.2rem;
-} 
+      display:flex;
+
+      align-items:center;
+
+      justify-content:center;
+
+      gap:15px;
+
+    }
+
+    .creator-credit img {
+
+      width:70px;
+
+      height:70px;
+
+      border-radius:50%;
+
+      object-fit:cover;
+
+    }
+
+    .creator-credit p {
+
+      margin:0;
+
+      text-align:left;
+
+      font-size:1rem;
+
+    }
+
+    .creator-credit strong {
+
+      display:block;
+
+      color:var(--rose-deep);
+
+      font-family:Georgia,"Times New Roman",serif;
+
+      font-size:1.2rem;
+
+    }
+
   </style>
+
 </head>
 
 <body>
 
   <nav>
+
     <a class="brand" href="#home">Coastal Escape</a>
 
     <div class="navlinks">
+
       <a href="#about">About</a>
+
       <a href="#rooms">Rooms</a>
+
       <a href="#activities">Activities</a>
+
       <a href="#food">Food</a>
+
       <a href="#gallery">Gallery</a>
+
       <a class="nav-cta" href="#book">Book</a>
+
     </div>
+
   </nav>
 
   <!-- HOME -->
@@ -662,32 +1115,47 @@
     <div class="hero-content">
 
       <div class="eyebrow">
+
         Tropical, pretty & perfectly unhurried
+
       </div>
 
       <h1>
+
         Coastal<br>
+
         Escape
+
       </h1>
 
       <p>
+
         A dreamy modern resort where warm sand, pink skies,
+
         palm-lined pools and cute little luxuries turn every day
+
         into your favorite camera-roll memory.
+
       </p>
 
       <div class="hero-actions">
 
         <a class="btn btn-primary" href="#rooms">
+
           Explore rooms
+
         </a>
 
         <a class="btn btn-light" href="#book">
+
           Book your escape
+
         </a>
 
       </div>
+
     </div>
+
   </header>
 
   <!-- ABOUT -->
@@ -699,24 +1167,37 @@
       <div>
 
         <div class="eyebrow">
+
           Meet your new happy place
+
         </div>
 
         <h2 class="section-title">
+
           Soft sunsets. Salty air. Zero rush.
+
         </h2>
 
         <p class="section-copy">
+
           Coastal Escape is a fictional boutique resort designed
+
           for slow mornings and golden-hour everything. Think creamy
+
           interiors, blush accents, tropical gardens, ocean breezes
+
           and the kind of effortless luxury that still feels fun.
+
           Spend the day at the beach, float by the pool, book a spa
+
           treatment, then dress up for dinner under the palms.
+
         </p>
 
         <span class="mini-note">
+
           ♡ made for main-character vacations
+
         </span>
 
       </div>
@@ -724,8 +1205,11 @@
       <div class="polaroid">
 
         <img
+
           src="https://images.pexels.com/photos/16606639/pexels-photo-16606639.jpeg?auto=compress&cs=tinysrgb&w=1200"
+
           alt="Pink tropical hotel with palm tree"
+
         >
 
       </div>
@@ -741,16 +1225,23 @@
     <div class="container">
 
       <div class="eyebrow">
+
         Stay awhile
+
       </div>
 
       <h2 class="section-title">
+
         Pick your room
+
       </h2>
 
       <p class="section-copy">
+
         Three pretty stays, each with soft textures,
+
         warm neutrals and a little coastal glow.
+
       </p>
 
       <div class="cards">
@@ -758,8 +1249,11 @@
         <article class="card">
 
           <img
+
             src="https://images.pexels.com/photos/271624/pexels-photo-271624.jpeg?auto=compress&cs=tinysrgb&w=1000"
+
             alt="Coastal Queen room"
+
           >
 
           <div class="card-body">
@@ -767,12 +1261,17 @@
             <h3>Coastal Queen</h3>
 
             <p class="muted">
+
               A bright queen room with a garden balcony,
+
               rainfall shower and breakfast for two.
+
             </p>
 
             <div class="price">
+
               $249 / night
+
             </div>
 
           </div>
@@ -782,8 +1281,11 @@
         <article class="card">
 
           <img
+
             src="https://images.pexels.com/photos/164595/pexels-photo-164595.jpeg?auto=compress&cs=tinysrgb&w=1000"
+
             alt="Ocean Suite room"
+
           >
 
           <div class="card-body">
@@ -791,12 +1293,17 @@
             <h3>Ocean Suite</h3>
 
             <p class="muted">
+
               King bed, soaking tub, lounge area and a breezy
+
               balcony facing the water.
+
             </p>
 
             <div class="price">
+
               $389 / night
+
             </div>
 
           </div>
@@ -806,8 +1313,11 @@
         <article class="card">
 
           <img
+
             src="https://images.pexels.com/photos/1743231/pexels-photo-1743231.jpeg?auto=compress&cs=tinysrgb&w=1000"
+
             alt="Sunset Villa"
+
           >
 
           <div class="card-body">
@@ -815,12 +1325,17 @@
             <h3>Sunset Villa</h3>
 
             <p class="muted">
+
               Our dreamy private villa with plunge pool,
+
               daybed terrace and sunset views.
+
             </p>
 
             <div class="price">
+
               $549 / night
+
             </div>
 
           </div>
@@ -828,6 +1343,7 @@
         </article>
 
       </div>
+
     </div>
 
   </section>
@@ -839,69 +1355,109 @@
     <div class="container">
 
       <div class="eyebrow">
+
         Choose your vibe
+
       </div>
 
       <h2 class="section-title">
+
         Play, float, glow
+
       </h2>
 
       <p class="section-copy">
+
         Your itinerary can be packed, lazy,
+
         or a little bit of both.
+
       </p>
 
       <div class="activities-grid">
 
         <div class="activity">
+
           <div class="icon">🏊🏽‍♀️</div>
+
           <h3>Pool Days</h3>
+
           <p>Infinity pool, loungers and frozen mocktails.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🧖🏽‍♀️</div>
+
           <h3>Pink Palm Spa</h3>
+
           <p>Massages, facials and warm-oil treatments.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🏐</div>
+
           <h3>Beach Volleyball</h3>
+
           <p>Casual sunset matches right on the sand.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🤿</div>
+
           <h3>Snorkeling</h3>
+
           <p>Clear-water reef tours with resort guides.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🛶</div>
+
           <h3>Paddle & Kayak</h3>
+
           <p>Calm-morning paddles along the shoreline.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🧘🏽‍♀️</div>
+
           <h3>Sunrise Yoga</h3>
+
           <p>Beachfront flow followed by fresh juice.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">📸</div>
+
           <h3>Golden Hour Walks</h3>
+
           <p>Perfect little photo spots around the resort.</p>
+
         </div>
 
         <div class="activity">
+
           <div class="icon">🎶</div>
+
           <h3>Poolside DJ</h3>
+
           <p>Easy tropical sets every Friday evening.</p>
+
         </div>
 
       </div>
+
     </div>
 
   </section>
@@ -913,16 +1469,23 @@
     <div class="container">
 
       <div class="eyebrow">
+
         Eat pretty
+
       </div>
 
       <h2 class="section-title">
+
         Breakfast, lunch & dinner
+
       </h2>
 
       <p class="section-copy">
+
         Fresh tropical flavors from first coffee
+
         to the last candlelit dessert.
+
       </p>
 
       <div class="food-grid">
@@ -932,19 +1495,29 @@
           <div class="food-copy">
 
             <div
+
               class="eyebrow"
+
               style="color:#ffd7da"
+
             >
+
               7:00 AM — 11:30 AM
+
             </div>
 
             <h3>
+
               Sunroom Breakfast Club
+
             </h3>
 
             <p>
+
               Guava pancakes, açai bowls, eggs,
+
               pastries, espresso and fresh juices.
+
             </p>
 
           </div>
@@ -958,19 +1531,29 @@
             <div class="food-copy">
 
               <div
+
                 class="eyebrow"
+
                 style="color:#ffd7da"
+
               >
+
                 12:00 PM — 4:00 PM
+
               </div>
 
               <h3>
+
                 Salt & Lime
+
               </h3>
 
               <p>
+
                 Beachy lunch plates, tacos,
+
                 salads, fruit and frozen drinks.
+
               </p>
 
             </div>
@@ -982,19 +1565,29 @@
             <div class="food-copy">
 
               <div
+
                 class="eyebrow"
+
                 style="color:#ffd7da"
+
               >
+
                 5:30 PM — 10:30 PM
+
               </div>
 
               <h3>
+
                 Blush Tide
+
               </h3>
 
               <p>
+
                 Candlelit seafood, pasta,
+
                 grilled favorites and sunset desserts.
+
               </p>
 
             </div>
@@ -1016,38 +1609,57 @@
     <div class="container">
 
       <div class="eyebrow">
+
         From the camera roll
+
       </div>
 
       <h2 class="section-title">
+
         Wish you were here ♡
+
       </h2>
 
       <div class="gallery-grid">
 
         <img
+
           src="https://images.pexels.com/photos/23696835/pexels-photo-23696835.jpeg?auto=compress&cs=tinysrgb&w=1200"
+
           alt="Resort infinity pool"
+
         >
 
         <img
+
           src="https://images.pexels.com/photos/189349/pexels-photo-189349.jpeg?auto=compress&cs=tinysrgb&w=900"
+
           alt="Beach water"
+
         >
 
         <img
+
           src="https://images.pexels.com/photos/461940/pexels-photo-461940.jpeg?auto=compress&cs=tinysrgb&w=900"
+
           alt="Palm trees"
+
         >
 
         <img
+
           src="https://images.pexels.com/photos/28843947/pexels-photo-28843947.jpeg?auto=compress&cs=tinysrgb&w=1300"
+
           alt="Tropical sunset resort"
+
         >
 
         <img
+
           src="https://images.pexels.com/photos/2227774/pexels-photo-2227774.jpeg?auto=compress&cs=tinysrgb&w=900"
+
           alt="Tropical pool"
+
         >
 
       </div>
@@ -1065,30 +1677,47 @@
       <div>
 
         <div class="eyebrow">
+
           Fake booking, real vacation energy
+
         </div>
 
         <h2 class="section-title">
+
           Book your escape
+
         </h2>
 
         <p class="section-copy">
+
           Choose your dates, room and guest count.
+
           This demo form does not send payment
+
           or make a real reservation.
+
         </p>
 
         <p class="tiny">
+
           Tip: sunset villa + breakfast club + spa day
+
           = elite fictional itinerary.
+
         </p>
 
         <div
+
           class="fake-success"
+
           id="success"
+
         >
+
           ♡ Your pretend reservation is officially on the books.
+
           See you by the palms!
+
         </div>
 
       </div>
@@ -1098,13 +1727,19 @@
         <div class="field">
 
           <label for="name">
+
             Full name
+
           </label>
 
           <input
+
             id="name"
+
             required
+
             placeholder="Your name"
+
           >
 
         </div>
@@ -1112,14 +1747,21 @@
         <div class="field">
 
           <label for="email">
+
             Email
+
           </label>
 
           <input
+
             id="email"
+
             type="email"
+
             required
+
             placeholder="you@example.com"
+
           >
 
         </div>
@@ -1127,13 +1769,19 @@
         <div class="field">
 
           <label for="checkin">
+
             Check in
+
           </label>
 
           <input
+
             id="checkin"
+
             type="date"
+
             required
+
           >
 
         </div>
@@ -1141,13 +1789,19 @@
         <div class="field">
 
           <label for="checkout">
+
             Check out
+
           </label>
 
           <input
+
             id="checkout"
+
             type="date"
+
             required
+
           >
 
         </div>
@@ -1155,14 +1809,21 @@
         <div class="field">
 
           <label for="guests">
+
             Guests
+
           </label>
 
           <select id="guests">
+
             <option>1 guest</option>
+
             <option selected>2 guests</option>
+
             <option>3 guests</option>
+
             <option>4 guests</option>
+
           </select>
 
         </div>
@@ -1170,13 +1831,19 @@
         <div class="field">
 
           <label for="room">
+
             Room
+
           </label>
 
           <select id="room">
+
             <option>Coastal Queen — $249</option>
+
             <option>Ocean Suite — $389</option>
+
             <option>Sunset Villa — $549</option>
+
           </select>
 
         </div>
@@ -1184,21 +1851,31 @@
         <div class="field full">
 
           <label for="note">
+
             Special requests
+
           </label>
 
           <textarea
+
             id="note"
+
             placeholder="Birthday trip, spa day, extra pillows, cutest room possible..."
+
           ></textarea>
 
         </div>
 
         <button
+
           class="submit"
+
           type="submit"
+
         >
+
           Reserve my stay ♡
+
         </button>
 
       </form>
@@ -1214,31 +1891,37 @@
     <div class="container">
 
       <div class="footer-brand">
+
         Coastal Escape
+
       </div>
 
       <p>
+
         Fictional tropical resort • made for dreamy getaways
+
       </p>
 
       <p class="tiny">
-        Demo website — no real reservations are processed.
-      </p>
-<div class="creator-credit">
-  <img src="my_picture.jpg" alt="Picture of Mahlet Tadesse">
-<div class="creator-credit">
-  <img src="my_picture.jpg" alt="Picture of Mahlet Tadesse">
 
-  <p>
-    Webpage created by
-    <strong>Mahlet Tadesse</strong>
-  </p>
-</div>
-  <p>
-    Webpage created by
-    <strong>Mahlet Tadesse</strong>
-  </p>
-</div>
+        Demo website — no real reservations are processed.
+
+      </p>
+
+      <div class="creator-credit">
+
+        <img src="my_picture.jpg" alt="Picture of Mahlet Tadesse">
+
+        <p>
+
+          Webpage created by
+
+          <strong>Mahlet Tadesse</strong>
+
+        </p>
+
+      </div>
+
     </div>
 
   </footer>
@@ -1246,6 +1929,7 @@
   <script>
 
     const form =
+
       document.getElementById('bookingForm');
 
     form.addEventListener('submit', e => {
@@ -1253,18 +1937,25 @@
       e.preventDefault();
 
       document.getElementById('success').style.display =
+
         'block';
 
       form.querySelector('.submit').textContent =
+
         'Reserved ♡';
 
       setTimeout(() => {
 
         document
+
           .getElementById('success')
+
           .scrollIntoView({
+
             behavior:'smooth',
+
             block:'center'
+
           });
 
       },100);
@@ -1276,23 +1967,31 @@
     const yyyy = today.getFullYear();
 
     const mm =
+
       String(today.getMonth()+1)
+
       .padStart(2,'0');
 
     const dd =
+
       String(today.getDate())
+
       .padStart(2,'0');
 
     const minDate =
+
       `${yyyy}-${mm}-${dd}`;
 
     document.getElementById('checkin').min =
+
       minDate;
 
     document.getElementById('checkout').min =
+
       minDate;
 
   </script>
 
 </body>
+
 </html>
